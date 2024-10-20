@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Index } from "./components/Index";
 import { ListEmployee } from "./components/ListEmployee";
+import "./styles/index.scss";
 
 function App() {
   return (

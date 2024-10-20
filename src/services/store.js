@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useBearStore = create((set) => ({
+export const useEmployeeStore = create((set) => ({
   listEmployee: [],
   addEmployee: (newEmployee) =>
     set((state) => ({

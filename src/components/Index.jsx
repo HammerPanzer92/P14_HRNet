@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useBearStore } from "../services/store";
+import { useEmployeeStore } from "../services/store";
+import { Modal } from "./Modal";
 
 export function Index() {
   const [employee, setEmployee] = useState({
@@ -15,14 +16,16 @@ export function Index() {
     department: "",
   });
 
-  const listEmployee = useBearStore((state) => state.listEmployee);
-  const addEmployee = useBearStore((state) => state.addEmployee);
+  const listEmployee = useEmployeeStore((state) => state.listEmployee);
+  const addEmployee = useEmployeeStore((state) => state.addEmployee);
+  const [isModal, setIsModal] = useState(false);
 
   const saveEmployee = () => {
     //Sauvegarde de l'employee dans store Zustand
+    //Note : pas instantatané
     addEmployee(employee);
     console.log("Sauvegarde de l'employee dans store");
-    console.log(listEmployee);
+    setIsModal(true);
   };
 
   return (
@@ -155,6 +158,11 @@ export function Index() {
         <button onClick={() => saveEmployee()}>Save</button>
         <button onClick={() => console.log(listEmployee)}>Test log</button>
       </div>
+      <Modal
+        message="Employee created !"
+        visible={isModal}
+        onClose={() => setIsModal(false)}
+      />
     </main>
   );
 }

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEmployeeStore } from "../services/store";
 import { Modal } from "./Modal";
+import { Select } from "./Select";
+import { states } from "../services/states";
 
 export function Index() {
   const [employee, setEmployee] = useState({
@@ -19,6 +21,14 @@ export function Index() {
   const listEmployee = useEmployeeStore((state) => state.listEmployee);
   const addEmployee = useEmployeeStore((state) => state.addEmployee);
   const [isModal, setIsModal] = useState(false);
+
+  const optionsDepartments = [
+    "Sales",
+    "Marketing",
+    "Engineering",
+    "Human Resources",
+    "Legal",
+  ];
 
   const saveEmployee = () => {
     //Sauvegarde de l'employee dans store Zustand
@@ -64,7 +74,7 @@ export function Index() {
           <label htmlFor="date-of-birth">Date of Birth</label>
           <input
             id="date-of-birth"
-            type="text"
+            type="date"
             onChange={(e) =>
               setEmployee((prevEmployee) => ({
                 ...prevEmployee,
@@ -76,7 +86,7 @@ export function Index() {
           <label htmlFor="start-date">Start Date</label>
           <input
             id="start-date"
-            type="text"
+            type="date"
             onChange={(e) =>
               setEmployee((prevEmployee) => ({
                 ...prevEmployee,
@@ -112,17 +122,22 @@ export function Index() {
               }
             />
 
-            <label htmlFor="state">State</label>
-            <select
-              name="state"
+            <Select
               id="state"
+              label="State"
+              options={states.map((element) => {
+                return {
+                  value: element.abbreviation,
+                  name: element.name
+                }
+               })}
               onChange={(e) =>
                 setEmployee((prevEmployee) => ({
                   ...prevEmployee,
                   state: e.target.value,
                 }))
               }
-            ></select>
+            />
 
             <label htmlFor="zip-code">Zip Code</label>
             <input
@@ -137,23 +152,18 @@ export function Index() {
             />
           </fieldset>
 
-          <label htmlFor="department">Department</label>
-          <select
-            name="department"
+          <Select
             id="department"
+            label="Department"
+            options={optionsDepartments}
             onChange={(e) =>
               setEmployee((prevEmployee) => ({
                 ...prevEmployee,
                 department: e.target.value,
               }))
             }
-          >
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
+          />
+
         </form>
         <button onClick={() => saveEmployee()}>Save</button>
         <button onClick={() => console.log(listEmployee)}>Test log</button>

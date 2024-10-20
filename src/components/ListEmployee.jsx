@@ -8,6 +8,7 @@ export function ListEmployee() {
 
   /*
   Fonction éventuellement utile pour tableau
+  
   function splitByCapitalLetters(str) {
     return str.replace(/([A-Z])/g, ' $1').trim();
   }

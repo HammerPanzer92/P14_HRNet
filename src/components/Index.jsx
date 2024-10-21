@@ -6,22 +6,7 @@ import { Select } from "./Select";
 import { states } from "../services/states";
 
 export function Index() {
-  const [employee, setEmployee] = useState({
-    firstname: "",
-    lastname: "",
-    dateOfBirth: "",
-    startDate: "",
-    street: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    department: "",
-  });
-
-  const listEmployee = useEmployeeStore((state) => state.listEmployee);
-  const addEmployee = useEmployeeStore((state) => state.addEmployee);
-  const [isModal, setIsModal] = useState(false);
-
+  
   const optionsDepartments = [
     "Sales",
     "Marketing",
@@ -30,11 +15,27 @@ export function Index() {
     "Legal",
   ];
 
+  const [employee, setEmployee] = useState({
+    firstname: "",
+    lastname: "",
+    dateOfBirth: "",
+    startDate: "",
+    street: "",
+    city: "",
+    state: states[0].abbreviation,
+    zipCode: "",
+    department: optionsDepartments[0],
+  });
+
+  const listEmployee = useEmployeeStore((state) => state.listEmployee);
+  const addEmployee = useEmployeeStore((state) => state.addEmployee);
+  const [isModal, setIsModal] = useState(false);
+
+
   const saveEmployee = () => {
     //Sauvegarde de l'employee dans store Zustand
     //Note : pas instantatané
     addEmployee(employee);
-    console.log("Sauvegarde de l'employee dans store");
     setIsModal(true);
   };
 

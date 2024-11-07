@@ -40,7 +40,7 @@ export function Index() {
   };
 
   return (
-    <main>
+    <main id="main-index">
       <div className="title">
         <h1>HRnet</h1>
       </div>

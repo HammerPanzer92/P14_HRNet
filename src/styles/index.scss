@@ -1,4 +1,5 @@
 @use "modal";
+@use "_listemployee";
 
 .title {
     display: flex;
@@ -6,6 +7,28 @@
     justify-content: center;
 }
 
+#main-index {
+    display: flex;
+    flex-direction: column;
+    .container {
+        border-radius: 25px;
+        border-color: darkgray;
+        border-style: double;
+        padding: 10px;
+        align-self: center;
+        -webkit-box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.6);
+        -moz-box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.6);
+        box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.6);
+        select {
+            width: 198px;
+        }
+
+        button {
+            min-width: 100px;
+            margin: 10px auto;
+        }
+    }
+}
 
 .container {
     display: flex;

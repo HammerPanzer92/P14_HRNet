@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEmployeeStore } from "../services/store";
-import { Modal } from "./Modal";
+/* import { Modal } from "./Modal"; */
 import { Select } from "./Select";
 import { states } from "../services/states";
+import Modal from "rd-panzer-modal";
 
 export function Index() {
-  
   const optionsDepartments = [
     "Sales",
     "Marketing",
@@ -30,7 +30,6 @@ export function Index() {
   const listEmployee = useEmployeeStore((state) => state.listEmployee);
   const addEmployee = useEmployeeStore((state) => state.addEmployee);
   const [isModal, setIsModal] = useState(false);
-
 
   const saveEmployee = () => {
     //Sauvegarde de l'employee dans store Zustand
@@ -129,9 +128,9 @@ export function Index() {
               options={states.map((element) => {
                 return {
                   value: element.abbreviation,
-                  name: element.name
-                }
-               })}
+                  name: element.name,
+                };
+              })}
               onChange={(e) =>
                 setEmployee((prevEmployee) => ({
                   ...prevEmployee,
@@ -164,7 +163,6 @@ export function Index() {
               }))
             }
           />
-
         </form>
         <button onClick={() => saveEmployee()}>Save</button>
         <button onClick={() => console.log(listEmployee)}>Test log</button>
